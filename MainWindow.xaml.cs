@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace HomeWork10
 {
@@ -21,6 +22,15 @@ namespace HomeWork10
         private void btnMsgSendClick(object sender, RoutedEventArgs e)
         {
             client.SendMessage(txtMsgSend.Text, TargetSend.Text);
+            txtMsgSend.Text = string.Empty;
+        }
+        private void btnMsgSendEnter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                client.SendMessage(txtMsgSend.Text, TargetSend.Text);
+                txtMsgSend.Text = string.Empty;
+            }
         }
     }
 }

@@ -47,7 +47,8 @@ namespace HomeWork10
                 cancellationToken
             );
         }
-        public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        public async Task HandleUpdateAsync(ITelegramBotClient botClient, 
+            Update update, CancellationToken cancellationToken)
         {     
             var messageText = update.Message!.Text;                        
 
@@ -55,8 +56,10 @@ namespace HomeWork10
             {
                 BotMessageLog.Add(
                 new MessageLog(
-                    DateTime.Now.ToLongTimeString(), messageText!, update.Message.Chat.FirstName!, update.Message.Chat.Id));
-                             
+                    DateTime.Now.ToLongTimeString(), 
+                    messageText!, 
+                    update.Message.Chat.FirstName!, 
+                    update.Message.Chat.Id));                             
             });
                         
             var options = new JsonSerializerOptions 
@@ -75,7 +78,8 @@ namespace HomeWork10
             }
             if (update?.Message?.Type == MessageType.Document)
             {
-                await DownLoadAsync(update.Message.Document!.FileId, update.Message.Document.FileName!);
+                await DownLoadAsync(update.Message.Document!.FileId, 
+                                    update.Message.Document.FileName!);
                 await botClient.SendTextMessageAsync(update.Message.Chat.Id,
                       text: $"Вы загрузили документ: {update.Message.Document?.FileName}");
                 Console.WriteLine($"{update.Message.Document?.FileName} загружен на диск" +
@@ -103,7 +107,8 @@ namespace HomeWork10
             }
             if (update?.Message?.Type == MessageType.Audio)
             {
-                await DownLoadAsync(update.Message.Audio?.FileId!, update.Message.Audio?.FileName!);
+                await DownLoadAsync(update.Message.Audio?.FileId!, 
+                                    update.Message.Audio?.FileName!);
                 await botClient.SendTextMessageAsync(update.Message.Chat.Id,
                       text: $"Вы загрузили аудиофайл: {update.Message.Audio?.FileName}");
                 Console.WriteLine($"{update.Message.Audio?.FileName} загружен на диск" +
@@ -170,7 +175,8 @@ namespace HomeWork10
             long id = Convert.ToInt64(Id);
             bot.SendTextMessageAsync(id, Text);
         }                
-        Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
+        Task HandleErrorAsync(ITelegramBotClient botClient, 
+            Exception exception, CancellationToken cancellationToken)
         {
             string ErrorMessage = exception switch
             {

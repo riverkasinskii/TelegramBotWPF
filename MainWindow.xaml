@@ -14,8 +14,14 @@
         
         MaxHeight="800"
         MaxWidth="1000">
-    
+
     <Grid ShowGridLines="True">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FFFFFBFB" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -25,8 +31,11 @@
                  Grid.Column="0"
                  HorizontalAlignment="Stretch" 
                  Margin="5" 
-                 VerticalAlignment="Stretch" 
+                 VerticalAlignment="Stretch" FontStyle="Oblique" 
                  >
+            <ListBox.Background>
+                <SolidColorBrush Color="#FF0003C3" Opacity="0.2"/>
+            </ListBox.Background>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" 
@@ -36,14 +45,16 @@
                         <StackPanel Margin="10">
                             <TextBlock Text="{Binding FirstName}" 
                                        Margin="0" 
-                                       FontSize="15"/>
+                                       FontSize="15"
+                                       Foreground="White"/>
                             <TextBlock Text="{Binding Msg}" 
                                        Margin="0" 
-                                       FontSize="20"/>
+                                       FontSize="20" 
+                                       Foreground="#FFB38989"/>
                             <TextBlock Text="{Binding Time}" 
                                        Margin="10 0" 
                                        FontSize="10" 
-                                       Foreground="Gray" 
+                                       Foreground="White" 
                                        TextAlignment="Right"/>
                         </StackPanel>
                     </Border>
@@ -52,11 +63,12 @@
         </ListBox>
 
         <GroupBox Grid.Column="1" 
-                  FontSize="20"
+                  FontSize="30"   
                   Header="Отправка сообщения"
                   HorizontalAlignment="Stretch" 
                   Margin="5"
-                  VerticalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  Foreground="White" 
                   >
             <StackPanel>
                 <TextBlock x:Name="TargetSend" 
@@ -68,7 +80,9 @@
 
                 <TextBox x:Name="txtMsgSend" 
                          FontSize="20" 
-                         Margin="5"/>
+                         Margin="5" 
+                         KeyUp="btnMsgSendEnter"
+                         FontStyle="Italic"/>
 
                 <Button x:Name="btnMsgSend" 
                         FontSize="20" 
